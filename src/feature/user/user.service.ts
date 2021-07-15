@@ -17,7 +17,7 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    console.log(id)
+    console.log(id);
     return `This action updates a #${id} user`;
   }
 

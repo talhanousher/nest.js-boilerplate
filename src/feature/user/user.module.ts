@@ -1,4 +1,9 @@
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  RequestMethod,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 
@@ -6,7 +11,7 @@ import { VerifyUser, VerifyMe } from '../../common/middleware';
 
 @Module({
   controllers: [UserController],
-  providers: [UserService]
+  providers: [UserService],
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -14,7 +19,6 @@ export class UserModule implements NestModule {
       .apply(VerifyUser)
       .forRoutes({ path: '/user', method: RequestMethod.GET })
       .apply(VerifyMe)
-      .forRoutes({ path: '/user', method: RequestMethod.POST })
-
+      .forRoutes({ path: '/user', method: RequestMethod.POST });
   }
 }
