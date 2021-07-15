@@ -8,3 +8,11 @@ export class VerifyUser implements NestMiddleware {
     next();
   }
 }
+
+@Injectable()
+export class VerifyMe implements NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    console.log('Verify Me...');
+    next();
+  }
+}

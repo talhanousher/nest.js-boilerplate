@@ -2,7 +2,7 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 
-import { VerifyUser } from '../../common/middleware';
+import { VerifyUser, VerifyMe } from '../../common/middleware';
 
 @Module({
   controllers: [UserController],
@@ -12,6 +12,9 @@ export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(VerifyUser)
-      .forRoutes({ path: '/', method: RequestMethod.GET });
+      .forRoutes({ path: '/user', method: RequestMethod.GET })
+      .apply(VerifyMe)
+      .forRoutes({ path: '/user', method: RequestMethod.POST })
+
   }
 }
