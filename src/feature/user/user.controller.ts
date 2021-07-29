@@ -26,7 +26,7 @@ export class UserController {
   }
 
   @Post()
-  // @UseFilters(new HttpExceptionFilter())
+  @UseFilters(new HttpExceptionFilter())
   create(@Body() createUserDto: CreateUserDto) {
     // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     try {
